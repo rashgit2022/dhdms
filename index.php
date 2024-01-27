@@ -16,11 +16,11 @@
 </head>
 <body>
     <!--Navbar-->
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 ">
         <!-- first child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-success">
-  <div class="container fluid"> 
-    <img src="./images/logo.png" alt="" class="logo"
+  <div class="container-fluid"> 
+    <img src="./images/4k.png" alt="" class="logo">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -76,9 +76,105 @@
 <!--third child-->
 <div class="bg-light">
   <h3 class="text-center">Direct Harvest Delivery Management System</h3>
-  <p class="text-center">At FreshHarvest Direct, we invite you to embark on a unique culinary journey that begins with the land and ends on your plate. Our platform connects you directly with local farmers, bringing the bounty of the harvest right to your doorstep.</p>
+  <p class="text-center"><b>At FreshHarvest Direct, we invite you to embark on a unique culinary journey that begins with the land and ends on your plate. Our platform connects you directly with local farmers, bringing the bounty of the harvest right to your doorstep.</b></p>
 </div>
 
+<!--fourth child-->
+<div class="row">
+  <div class="col-md-10">
+    <!--products-->
+      <div class="row">
+        <div class="col-md-4 mb-2"> 
+        <div class="card" >
+  <img src="./images/1.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-success">Add to Cart</a>
+    <a href="#" class="btn btn-primary">View more</a>
+  </div>
+</div>
+        </div>
+        
+        <div class="col-md-4 mb-2">
+        <div class="card" >
+  <img src="./images/2.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-success">Add to Cart</a>
+    <a href="#" class="btn btn-primary">View more</a>
+  </div>
+</div>
+        </div>
+        
+        <div class="col-md-4 mb-2">
+        <div class="card" >
+  <img src="./images/3.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-success">Add to Cart</a>
+    <a href="#" class="btn btn-primary">View more</a>
+  </div>
+</div>
+        </div>
+
+        <div class="col-md-4 mb-2">
+        <div class="card" >
+  <img src="./images/5.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-success">Add to Cart</a>
+    <a href="#" class="btn btn-primary">View more</a>
+  </div>
+</div>
+        </div>
+
+        <div class="col-md-4 mb-2">
+        <div class="card" >
+  <img src="./images/6.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-success">Add to Cart</a>
+    <a href="#" class="btn btn-primary">View more</a>
+  </div>
+</div>
+        </div>
+
+        <div class="col-md-4 mb-2">
+        <div class="card" >
+  <img src="./images/7.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-success">Add to Cart</a>
+    <a href="#" class="btn btn-primary">View more</a>
+  </div>
+</div>
+        </div>
+
+      </div>
+  </div>
+  <!--sidenav-->
+ <div class="col-md-2 bg-secondary p-0">
+  <ul class="navbar-nav me-auto text-center">
+    <li class="nav-item bg-info">
+      <a href="#" class="nav-link text-light"><h4>Main Categories</h4></a>
+    </li>
+    <li class="nav-item ">
+      <a href="#" class="nav-link text-light"><h4>vegetables</h4></a>
+    </li>
+    <li class="nav-item ">
+      <a href="#" class="nav-link text-light"><h4>Fruits</h4></a>
+    </li>
+  </ul>
+    
+        
+  </div>
+</div>
 
 
 

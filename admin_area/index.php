@@ -6,20 +6,22 @@
     <title>Admin dashboard</title>
     <!--Boostrap css link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!--font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--css file -->
     <link rel="stylesheet" href="../style.css">
-    <style>
+<style>
 .admin_image{
     width: 100px;
     object-fit:contain:
 }
 
-    </style>
+</style>
 
 </head>
 <body>
     <!--navbar-->
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 nn">
         <!--first child-->
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
@@ -27,7 +29,7 @@
                 <nav class="navbar navbar-expand-lg">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Welcome Guest</a>                        
+                            <a href="" class="nav-link">welcome guest</a>                        
                         </li>
                     </ul>
                 </nav>
@@ -39,28 +41,40 @@
             <h3 class="text-center p-2"> Manage details</h3>
         </div>
 
-            <!--third child-->
-            <div class="row">
-                <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
-                    <div class="px-5">
-                        <a href="#"> <img src="../images/2.png" alt="" class="admin_image"></a>
+        <!--third child-->
+        <div class="row">
+            <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
+                <div class="px-5">
+                    <a href="#"> <img src="../images/2.png" alt="" class="admin_image"></a>
                         <p class="text-light text-center">Admin Name </p>
 
-                    </div>
-                    <div class="button text-center ">
-                        <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">Insert Items</a></button>
-                        <button><a href="" class="nav-link text-light bg-info my-1">View products</a></button>
-                        <button><a href="insert_categories.php" class="nav-link text-light bg-info my-1">Insert Categories</a></button>
-                        <button><a href="" class="nav-link text-light bg-info my-1">All orders</a></button>
-                        <button><a href="" class="nav-link text-light bg-info my-1">All payments</a></button>
-                        <button><a href="" class="nav-link text-light bg-info my-1">List Users</a></button>
-                        <button><a href="" class="nav-link text-light bg-info my-1">Logout</a></button>
-        
-                    </div>
+                </div>
+                <div class="button text-center ">
+                    <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">Insert Items</a></button>
+                    <button><a href="" class="nav-link text-light bg-info my-1">View products</a></button>
+                    <button><a href="index.php?insert_category" class="nav-link text-light bg-info my-1">Insert Categories</a></button>
+                    <button><a href="" class="nav-link text-light bg-info my-1">All orders</a></button>
+                    <button><a href="" class="nav-link text-light bg-info my-1">All payments</a></button>
+                    <button><a href="" class="nav-link text-light bg-info my-1">List Users</a></button>
+                    <button><a href="" class="nav-link text-light bg-info my-1">Logout</a></button>
                 </div>
             </div>
 
         </div>
+
+        <!--fourth child-->
+        <div class="container my-5">
+            <?php
+            if(isset($_GET['insert_category'])){
+                include('insert_categories.php');
+            }
+            ?>
+        </div>
+
+
+
+
+
     </div>
     <!--Boostrap js link-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>

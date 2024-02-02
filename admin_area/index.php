@@ -50,7 +50,7 @@
 
                 </div>
                 <div class="button text-center ">
-                    <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">Insert Items</a></button>
+                    <button class="my-3"><a href="insert_product.php" class="nav-link text-light bg-info my-1">Insert products</a></button>
                     <button><a href="" class="nav-link text-light bg-info my-1">View products</a></button>
                     <button><a href="index.php?insert_category" class="nav-link text-light bg-info my-1">Insert Categories</a></button>
                     <button><a href="" class="nav-link text-light bg-info my-1">All orders</a></button>
@@ -63,7 +63,7 @@
         </div>
 
         <!--fourth child-->
-        <div class="container my-5">
+        <div class="container my-3">
             <?php
             if(isset($_GET['insert_category'])){
                 include('insert_categories.php');

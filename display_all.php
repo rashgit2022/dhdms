@@ -48,29 +48,21 @@ include('functions/common_function.php');
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-          <sup><?php
-          cart_item();?></sup></a>
+          <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cart_item();?></sup></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Total price: <?php  total_cart_price();?>/-</a>
         </li>
       </ul>      
         
-      <form class="d-flex" action="search_product.php" method="get">
-        <input class="form-control mr-sm-2" t ype="search" 
-        placeholder="Search" aria-label="Search" name="search_data">
-        
-        <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </div>
 </nav>
 
-<!--calling cart function-->
-<?php 
-cart();
-?>
 
 <!--second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary ">
@@ -99,11 +91,8 @@ cart();
 <!--fetching gproducts-->
     <?php
     //calling function
-
-getproducts();
+    get_all_products();
 get_unique_categories();
-/*$ip = getIPAddress();  
-echo 'User Real IP Address - '.$ip;*/
 
 ?>
 
@@ -134,7 +123,6 @@ echo 'User Real IP Address - '.$ip;*/
 <!--last child-->
 <!--include footer-->
 <?php include("./includes/footer.php")?>
-</div>
 
 
 

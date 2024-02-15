@@ -1,6 +1,6 @@
 <?php
-include('includes/connect.php');
-include('functions/common_function.php');
+include('../includes/connect.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@ include('functions/common_function.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHDMS</title>
+    <title>DHDMS-Checkout Page</title>
     <!--boostrap css link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!--font link-->
@@ -31,9 +31,10 @@ include('functions/common_function.php');
     
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link active" arial-current="page" href="index.php">Home<span class="sr-only">(current)</span></a>
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" arial-current="page" href="index.php">
+            Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">category</a>
@@ -42,27 +43,22 @@ include('functions/common_function.php');
           <a class="nav-link" href="display_all.php">products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./users_area/user_registration.php">Register</a>
+          <a class="nav-link" href="../users_area/user_registration.php">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cart_item();?></sup></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Total price: <?php  total_cart_price();?>/-</a>
-        </li>
-      </ul>      
+          </ul>      
         
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      <form class="d-flex" action="search_product.php" method="get">
+        <input class="form-control mr-sm-2" t ype="search" 
+        placeholder="Search" aria-label="Search" name="search_data">
+        
+        <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
       </form>
     </div>
   </div>
 </nav>
-
 
 <!--second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary ">
@@ -71,7 +67,7 @@ include('functions/common_function.php');
       <a class="nav-link" href="#">Welcome Guest</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="./users_area/user_login.php">Login</a>
+      <a class="nav-link" href="#">Login</a>
     </li>
 
   </ul>
@@ -85,44 +81,28 @@ include('functions/common_function.php');
 
 <!--fourth child-->
 <div class="row px-1">
-  <div class="col-md-10">
+  <div class="col-md-12">
     <!--products-->
       <div class="row">
-<!--fetching gproducts-->
-    <?php
-    //calling function
-    get_all_products();
-get_unique_categories();
+        <?php
+        if(!isset($_SESSION['username'])){
+include('user_login.php');
+        }else{
+            include('payment.php');
+        }
+        ?>
 
-?>
+    </div>
 
-<!--row end-->
-</div>
 
 <!--col end-->
 </div>
-  <!--sidenav-->
- <div class="col-md-2 bg-secondary p-0">
-  <ul class="navbar-nav me-auto text-center">
-    <li class="nav-item bg-info">
-      <a href="#" class="nav-link text-light"><h4>Main Categories</h4></a>
-    </li>
-    <?php
-    getcategories();
-    ?>
-
-
-  </ul>
-    
-        
-  </div>
+  
 </div>
 
 
 
-<!--last child-->
-<!--include footer-->
-<?php include("./includes/footer.php")?>
+
 
 
 

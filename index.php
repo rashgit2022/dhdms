@@ -39,10 +39,10 @@ include('functions/common_function.php');
           <a class="nav-link" href="#">category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">products</a>
+          <a class="nav-link" href="display_all.php">products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="./users_area/user_registration.php">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
@@ -58,7 +58,7 @@ include('functions/common_function.php');
       </ul>      
         
       <form class="d-flex" action="search_product.php" method="get">
-        <input class="form-control mr-sm-2" t ype="search" 
+        <input class="form-control mr-sm-2" type="search" 
         placeholder="Search" aria-label="Search" name="search_data">
         
         <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
@@ -79,7 +79,7 @@ cart();
       <a class="nav-link" href="#">Welcome Guest</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Login</a>
+      <a class="nav-link" href="./users_area/user_login.php">Login</a>
     </li>
 
   </ul>

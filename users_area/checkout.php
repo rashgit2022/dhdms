@@ -1,5 +1,7 @@
+<!-- connect file -->
 <?php
 include('../includes/connect.php');
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -16,6 +18,12 @@ include('../includes/connect.php');
 
     <!--css file -->
     <link rel="stylesheet" href="style.css">
+    <style>
+      .logo{
+        width:7%;
+        height:75%;
+      }
+    </style>
 
 </head>
 <body>
@@ -24,7 +32,7 @@ include('../includes/connect.php');
         <!-- first child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-success">
   <div class="container-fluid"> 
-    <img src="./images/4k.png" alt="" class="logo">
+    <img src="../images/4k.png" alt="" class="logo">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,17 +41,14 @@ include('../includes/connect.php');
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" arial-current="page" href="index.php">
+          <a class="nav-link active" arial-current="page" href="../index.php">
             Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">category</a>
+          <a class="nav-link" href="../display_all.php">products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="display_all.php">products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../users_area/user_registration.php">Register</a>
+          <a class="nav-link" href="user_registration.php">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
@@ -63,12 +68,28 @@ include('../includes/connect.php');
 <!--second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary ">
   <ul class="navbar-nav me-auto">
-   <li class="nav-item">
-      <a class="nav-link" href="#">Welcome Guest</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Login</a>
-    </li>
+   
+    <?php
+    if(!isset($_SESSION['username'])){
+      echo "<li class='nav-item'>
+      <a class='nav-link' href='#'>Welcome Guest</a>
+    </li>";
+    }else{
+      echo "<li class='nav-item'>
+      <a class='nav-link' href='#'>Welcome " . $_SESSION['username']."</a>
+      </li>";
+    }
+if(!isset($_SESSION['username'])){
+  echo "<li class='nav-item'>
+    <a class='nav-link' href='./user_login.php'>Login</a>
+      </li>";
+    }else{
+    echo "<li class='nav-item'>
+    <a class='nav-link' href='logout.php'>Logout</a>
+    </li>";
+    }
+    ?>
+       
 
   </ul>
 </nav>

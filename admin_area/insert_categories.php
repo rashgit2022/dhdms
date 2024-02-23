@@ -11,7 +11,7 @@ if(isset($_POST['insert_cat'])){
             echo "<script>alert('This category is present inside the database')</script>";
       }else{
 
-      $insert_query="insert into categories (category_title) values ('$category_title')";
+      $insert_query="insert into `categories` (category_title) values ('$category_title')";
       $result=mysqli_query($con,$insert_query);
       if($result){
             echo"<script>alert('Category has been inserted successfully')</script>";

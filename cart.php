@@ -1,6 +1,7 @@
 <?php
 include('includes/connect.php');
 include('functions/common_function.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,12 +79,27 @@ cart();
 <!--second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary ">
   <ul class="navbar-nav me-auto">
-   <li class="nav-item">
-      <a class="nav-link" href="#">Welcome Guest</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="./users_area/user_login.php">Login</a>
-    </li>
+   
+    <?php
+    if(!isset($_SESSION['username'])){
+      echo "<li class='nav-item'>
+      <a class='nav-link' href='#'>Welcome Guest</a>
+    </li>";
+    }else{
+      echo "<li class='nav-item'>
+      <a class='nav-link' href='#'>Welcome " . $_SESSION['username']."</a>
+      </li>";
+    }
+if(!isset($_SESSION['username'])){
+  echo "<li class='nav-item'>
+    <a class='nav-link' href='./users_area/user_login.php'>Login</a>
+      </li>";
+    }else{
+    echo "<li class='nav-item'>
+    <a class='nav-link' href='./users_area/logout.php'>Logout</a>
+    </li>";
+    }
+    ?>
 
   </ul>
 </nav>
@@ -146,7 +162,7 @@ if(isset($_POST['update_cart'])){
               $quantities=$_POST['qty'];
               $update_cart="update `cart_details` set quantity=$quantities where ip_address='$get_ip_add'";
               $result_products_quantity=mysqli_query($con,$update_cart);
-              $total_price=(int) $total_price * (int)$quantities;
+              $total_price=(int)$total_price * (int)$quantities;
             } 
             ?>
           <td><?php echo $price_table ?>/-</td>

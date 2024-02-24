@@ -71,7 +71,7 @@ body{
                     <button><a href="index.php?view_categories" class="nav-link text-light bg-info my-1">View Categories</a></button>
                     <button><a href="index.php?list_orders" class="nav-link text-light bg-info my-1">All orders</a></button>
                     <button><a href="index.php?list_payments" class="nav-link text-light bg-info my-1">All payments</a></button>
-                    <button><a href="" class="nav-link text-light bg-info my-1">List Users</a></button>
+                    <button><a href="index.php?list_users" class="nav-link text-light bg-info my-1">List Users</a></button>
                     <button><a href="" class="nav-link text-light bg-info my-1">Logout</a></button>
                 </div>
             </div>
@@ -111,6 +111,10 @@ body{
             if(isset($_GET['list_payments'])){
                 include('list_payments.php');
             }
+            if(isset($_GET['list_users'])){
+                include('list_users.php');
+            }
+            
             ?>
         </div>
 

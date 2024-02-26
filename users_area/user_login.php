@@ -27,9 +27,9 @@ include('../functions/common_function.php');
     <div class="row d-flex align-item-center justify-content-center mt-5">
         <div class="col-lg-12 col-xl-6">
             <form action="" method="post" enctype="multipart/form-data">
-                <!-- username field -->
+                <!-- adminname field -->
                 <div class="form-outline mb-4">
-                    <label for="user_username" class="form-label">Username</label>
+                    <label for="admin_adminname" class="form-label">Username</label>
                     <input type="text" id="user_username" class="form-control" 
                     placeholder="Enter your username" autocomplete="off" required="required" 
                     name="user_username"/>
@@ -45,7 +45,10 @@ include('../functions/common_function.php');
                 
                 <div class="mt-4 pt-2">
                     <input type="submit" value="Login" class="bg-success py-2 px-3 border-0" name="user_login">
-                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account ?<a href="user_registration.php" class="text-danger"> Register</a> </p>
+                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account ?<a href="user_registration.php" 
+                    class="text-danger"> Register</a> </p>
+                    <p class="small fw-bold mt-2 pt-1 mb-0">Are you Admin ?<a href="../admin_area/admin_registration.php" 
+                    class="text-danger"> Register or Login</a> </p>
                 </div>
             </form>
         </div>
@@ -54,6 +57,7 @@ include('../functions/common_function.php');
 </body>
 </html>
 
+<!-- php code  -->
 <?php
 if(isset($_POST['user_login'])){
     $user_username=$_POST['user_username'];

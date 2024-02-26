@@ -3,10 +3,9 @@ include('../includes/connect.php');
 include('../functions/common_function.php');
 session_start();
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome <?php  echo $_SESSION['username']?></title>
@@ -47,7 +46,6 @@ session_start();
     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
-    
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -79,9 +77,8 @@ session_start();
         <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
       </form>
     </div>
-  </div>
+    </div>
 </nav>
-
 <!--calling cart function-->
 <?php 
 cart();
@@ -121,69 +118,87 @@ if(!isset($_SESSION['username'])){
   <p class="text-center"><b>At FreshHarvest Direct, we invite you to embark on a unique culinary journey that begins with the land and ends on your plate. Our platform connects you directly with local farmers, bringing the bounty of the harvest right to your doorstep.</b></p>
 </div>
 
-<!-- fourth child -->
-<div class="row">
-    <div class="col-md-2 ">
-        <ul class="navbar-nav bg-secondary text-center" style="height:100vh">
-            <li class="nav-item bg-info">
-                <a class="nav-link text-light" href="#"><h4>Your Profile</h4></a>
-            </li>
-            <?php
-        $username=$_SESSION['username'];
-        $user_image="Select * from `user_table` where username='$username'";
-        $user_image=mysqli_query($con,$user_image);
-        $row_image=mysqli_fetch_array($user_image);
-        $user_image=$row_image['user_image'];
-        echo"<li class='nav-item'>
-        <img src='./user_images/$user_image' class='profile_img my-4' alt=''>
-        </li>";    
-            ?>
-            <li class="nav-item ">
-                <a class="nav-link text-light" href="profile.php">Pending Orders </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-light" href="profile.php?edit_account">Edit Account  </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-light" href="profile.php?my_orders">My Orders  </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-light" href="profile.php?delete_account">Delete Account  </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-light" href="logout.php">Logout  </a>
-            </li>
-        </ul>
+	<div class="form-container ">
+		<form name="frmContact" id="" frmContact"" method="post" action=""
+			enctype="multipart/form-data" onsubmit="return validateContactForm()">
 
-    </div>
-    <div class="col-md-10 text-center">
-        <?php
-            get_user_order_details();
-            if(isset($_GET['edit_account'])){
-                include('edit_account.php');
-            }
-            if(isset($_GET['my_orders'])){
-                include('user_orders.php');
-            }
-            if(isset($_GET['delete_account'])){
-              include('delete_account.php');
-          }
-        ?>
-    </div>    
-</div>
+			<div class="input-row ">
+				<label style="padding-top: 30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</label> <span
+					id="userName-info" class="info"></span><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+					class="input-field" name="userName" id="userName" />
+			</div>
+			<div class="input-row">
+				<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email</label> <span id="userEmail-info" class="info"></span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" class="input-field" name="userEmail"
+					id="userEmail" />
+			</div>
+			<div class="input-row">
+				<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subject</label> <span id="subject-info" class="info"></span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" class="input-field" name="subject" id="subject" />
+			</div>
+			<div class="input-row">
+				<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Message</label> <span id="userMessage-info" class="info"></span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<textarea name="content" id="content" class="input-field" cols="60"
+					rows="6"></textarea>
+			</div>
+            <br/>
+			<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" name="send" class="btn btn-success" value="Send" />  <input type="button" value="Back" class="btn btn-primary" onclick="history.go(-1)">
 
 
+				<div id="statusMessage"> 
+                        <?php
+                        if (! empty($message)) {
+                            ?>
+                            <p class='<?php echo $type; ?>Message'><?php echo $message; ?></p>
+                        <?php
+                        }
+                        ?>
+                    </div>
+			</div>
+           
+		</form>
+	</div>
 
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"
+		type="text/javascript"></script>
+	<!-- include JavaScript validation here -->
+    <?php
+
+function strip_crlf($string)
+{
+    return str_replace("\r\n", "", $string);
+}
+
+if (! empty($_POST["send"])) {
+    $name = $_POST["userName"];
+    $email = $_POST["userEmail"];
+    $subject = $_POST["subject"];
+    $content = $_POST["content"];
+
+    $toEmail = "rashmisandamini1999@gmail.com";
+    // CRLF Injection attack protection
+    $name = strip_crlf($name);
+    $email = strip_crlf($email);
+    if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "The email address is invalid.";
+    } else {
+        // appending \r\n at the end of mailheaders for end
+        $mailHeaders = "From: " . $name . "<" . $email . ">\r\n";
+        if (mail($toEmail, $subject, $content, $mailHeaders)) {
+            $message = "Your contact information is received successfully.";
+            $type = "success";
+        }
+    }
+}
+require_once "contact.php";
+?>
+
+<br/>
 <!--last child-->
 <!--include footer-->
 <?php include("../includes/footer.php")?>
 </div>
 
-
-
-
-<!--boostrap js link-->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>
 </html>

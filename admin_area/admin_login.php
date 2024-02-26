@@ -1,3 +1,9 @@
+<?php 
+include('../includes/connect.php');
+include('../functions/common_function.php');
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,28 +20,32 @@
         <h2 class="text-center mb-5">Admin Login</h2>
         <div class="row d-flex justify-content-center">
             <div class="col-lg-6 col-xl-5">
-                <img src="../images/admin_reg.jpg" alt="Admin_registration" class="img-fluid">
+                <img src="../images/admin_reg.jpg" alt="admin_registration" class="img-fluid">
             </div>
             <div class="col-lg-6 col-xl-4">
-                <form action="" method="post">
+                <form action="" method="post" >
+                    <!-- adminname field -->
                     <div class="form-outline mb-4">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" id="username" name="username" 
-                        placeholder="Enter your username" required="required" 
-                        class="form-control">
-                    </div>
-                    <div class="form-outline mb-4">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" id="password" name="password" 
-                        placeholder="Enter your Password" required="required" 
-                        class="form-control">
+                        <label for="admin_adminname" class="form-label">Username</label>
+                        <input type="text" id="admin_adminname" name="admin_name" 
+                        placeholder="Enter your username" autocomplete="off" required="required" 
+                        class="form-control"/>
                     </div>
                     
+                      <!-- admin password field -->
+                    <div class="form-outline mb-4">
+                        <label for="admin_password" class="form-label">Password</label>
+                        <input type="password" id="admin_password" name="admin_password" 
+                        placeholder="Enter your Password" autocomplete="off" required="required" 
+                        class="form-control"/>
+                    </div>
+                    
+                    <!-- submit  -->
                     <div>
                         <input type="submit" class="bg-info py-2 px-3 border-0"
                         name="admin_login" value="Login">
                         <p class="small fw-bold mt-2 pt-1">Don't you have an account? 
-                            <a href="admin_registration.php" class="link-danger">Register</a></p>
+                            <a href="admin_registration.php" class="text-danger">Register</a></p>
                     </div>
                 </form>
             </div>
@@ -44,3 +54,35 @@
 
 </body>
 </html>
+
+<?php
+if(isset($_POST['admin_login'])){
+    $admin_adminname=$_POST['admin_name'];
+    $admin_password=$_POST['admin_password'];
+   
+
+    
+    
+    $select_query="Select * from admin_table where admin_name='$admin_adminname'";
+    $result=mysqli_query($con,$select_query);
+    $row_count=mysqli_num_rows($result);
+    $row_data=mysqli_fetch_assoc($result);
+    
+
+    if($row_count>0){
+        if(password_verify($admin_password,$row_data['admin_password'])){
+            $_SESSION['admink_name']=$admin_adminname;
+            echo"<script>alert('Login Successful')</script>";
+            echo "<script>window.open('../admin_area/index.php','_self')</script>";{
+            }
+        }else{
+         echo "<script>alert('Invalid Credentials')</script>";
+        }
+        
+    }else{
+        echo "<script>alert('Invalid Credentials')</script>";
+    }
+
+} 
+?> 
+

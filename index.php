@@ -18,6 +18,12 @@ session_start();
     <!--css file -->
     <link rel="stylesheet" href="style.css">
 
+    <style>
+      body{
+        overflow-x:hidden;
+    }  
+    </style>
+
 </head>
 <body>
     <!--Navbar-->
@@ -25,7 +31,7 @@ session_start();
         <!-- first child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-success">
   <div class="container-fluid"> 
-    <img src="./images/4k.png" alt="" class="logo">
+    <img src="./images/logo.png" alt="" class="logo">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,9 +42,7 @@ session_start();
         <li class="nav-item active">
           <a class="nav-link active" arial-current="page" href="index.php">Home<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">category</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="display_all.php">products</a>
         </li>
@@ -56,7 +60,7 @@ session_start();
         ?>
         
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="users_area/contact.php">Contact</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i>

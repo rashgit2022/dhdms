@@ -28,7 +28,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                         <p class='card-text'>$product_description</p>
                         <p class='card-text'>Price:$product_price/-</p>
                         <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                        <a href='#' class='btn btn-primary'>View more</a>
+                        
                       </div>
     </div>
   </div>";
@@ -62,7 +62,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                         <p class='card-text'>$product_description</p>
                         <p class='card-text'>Price:$product_price/-</p>
                         <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                        <a href='#' class='btn btn-primary'>View more</a>
+                        
                       </div>
     </div>
   </div>";
@@ -99,7 +99,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                       <p class='card-text'>$product_description</p>
                       <p class='card-text'>Price:$product_price/-</p>
                       <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                      <a href='#' class='btn btn-primary'>View more</a>
+                      
                     </div>
   </div>
 </div>";
@@ -152,7 +152,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                         <p class='card-text'>$product_description</p>
                         <p class='card-text'>Price:$product_price/-</p>
                         <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                        <a href='#' class='btn btn-primary'>View more</a>
+                        
                       </div>
     </div>
   </div>";

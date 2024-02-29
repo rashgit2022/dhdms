@@ -38,6 +38,8 @@ if(isset($_POST['insert_product'])){
         $result_query=mysqli_query($con,$insert_products);
         if($result_query){
             echo "<script>alert('Successfully inserted the products')</script>";
+        }else{
+            echo "<script>alert('There are some error inserting product')</script>";
         }
     }
 
@@ -120,7 +122,10 @@ if(isset($_POST['insert_product'])){
                 <!--Insert product button-->
                 <div class="form-outline mb-4 w-50 m-auto">
                     <input type="submit" name="insert_product" class="btn btn-info mb-3 px-3" value="Insert products">
+                <!--back button-->
+                <a href="../admin_area/index.php" class="btn btn-info mb-3 px-3">Back</a>    
             </div>
+            
         </form>
     </div>
 </body> 

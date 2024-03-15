@@ -37,19 +37,29 @@ session_start();
           <a class="nav-link active" arial-current="page" href="index.php">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">category</a>
+          <a class="nav-link" href="display_all.php">products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="display_all..php">Items</a>
+        <?php
+        if(isset($_SESSION['username'])){
+         echo "<li class='nav-item'>
+          <a class='nav-link' href='./users_area/profile.php'>My Account</a>
+        </li>";
+        }else{
+          echo "<li class='nav-item'>
+          <a class='nav-link' href='./users_area/user_registration.php'>Register</a>
+        </li>";
+        }
+      
+        ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./users_area/user_registration.php">Register</a>
+          <a class="nav-link" href="users_area/contact.php">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cart_item();?></sup></a>
+          <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <sup><?php
+          cart_item();?></sup></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Total price: <?php  total_cart_price();?>/-</a>

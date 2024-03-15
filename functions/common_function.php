@@ -28,7 +28,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                         <p class='card-text'>$product_description</p>
                         <p class='card-text'>Price:$product_price/-</p>
                         <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                        
+                        <a href='#' class='btn btn-primary'>View more</a>
                       </div>
     </div>
   </div>";
@@ -62,7 +62,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                         <p class='card-text'>$product_description</p>
                         <p class='card-text'>Price:$product_price/-</p>
                         <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                        
+                        <a href='#' class='btn btn-primary'>View more</a>
                       </div>
     </div>
   </div>";
@@ -99,7 +99,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                       <p class='card-text'>$product_description</p>
                       <p class='card-text'>Price:$product_price/-</p>
                       <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                      
+                      <a href='#' class='btn btn-primary'>View more</a>
                     </div>
   </div>
 </div>";
@@ -152,7 +152,7 @@ while($row=mysqli_fetch_assoc($result_query)){
                         <p class='card-text'>$product_description</p>
                         <p class='card-text'>Price:$product_price/-</p>
                         <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to Cart</a>
-                        
+                        <a href='#' class='btn btn-primary'>View more</a>
                       </div>
     </div>
   </div>";
@@ -187,20 +187,23 @@ if(isset($_GET['add_to_cart'])){
   global $con;
   $get_ip_add=getIPAddress();
   $get_product_id=$_GET['add_to_cart'];
-
   $select_query="Select * from `cart_details` where ip_address='$get_ip_add' and 
   product_id=$get_product_id";
   $result_query=mysqli_query($con,$select_query);
   $num_of_rows=mysqli_num_rows($result_query);
-if($num_of_rows>0){
-  echo "<script>alert('This item is already present inside cart')</script>";
+if($num_of_rows > 0){
+  $update_query="UPDATE `cart_details` SET quantity = quantity + 1 where ip_address='$get_ip_add' and 
+  product_id=$get_product_id";
+  $result_query=mysqli_query($con,$update_query);
+  #echo "<script>alert('Item is added to cart')</script>";
   echo "<script>window.open('index.php','_self')</script>";
-}else{
+} else{
   $insert_query="insert into `cart_details` (product_id,ip_address,quantity) 
-  values ($get_product_id,'$get_ip_add',0)";
+  values ($get_product_id,'$get_ip_add',1)";
   $result_query=mysqli_query($con,$insert_query);
-  echo "<script>alert('Item is added to cart')</script>";
+  #echo "<script>alert('Item is added to cart')</script>";
   echo "<script>window.open('index.php','_self')</script>";
+  
 }
 }
 }
@@ -225,23 +228,21 @@ function cart_item(){
 
   //total price function
   function total_cart_price(){
-    global $con;
+    global $con;  
     $get_ip_add = getIPAddress();
     $total_price=0;
     $cart_query="Select * from `cart_details` where  ip_address='$get_ip_add'";
     $result=mysqli_query($con,$cart_query);
-    while($row=mysqli_fetch_array($result)){
-      $product_id=$row['product_id'];
-      $select_products="Select * from `products` where  product_id='$product_id'";
-      $result_products=mysqli_query($con,$select_products);
-      while($row_product_price=mysqli_fetch_array($result_products)){
-    $product_price=array($row_product_price['product_price']); //[200,300]
-    $product_values=array_sum($product_price);   //[500]
-    $total_price+=$product_values;     //500
-      } 
-    }
+    while($row=mysqli_fetch_array($result)) {
+            $product_id=$row['product_id'];
+            $quantity = $row['quantity'];
+            $select_products="Select * from `products` where  product_id='$product_id'";
+            $result_product=mysqli_fetch_array(mysqli_query($con,$select_products));
+            $product_price=$result_product['product_price'];
+            $product_suptotal= $quantity * $product_price;
+            $total_price+=$product_suptotal; 
+    } 
     echo $total_price;
-
   }
 
 //get user order details

@@ -71,8 +71,19 @@ include('../functions/common_function.php');
         </div>
         
    </div>
-<!--last child-->
-<!--include footer-->
+    <!--last child-->
+    <!--include footer-->
+
+<div>
+    <tr>
+        .
+    </tr>
+</div>
+<div>
+    <tr>
+        .
+    </tr>
+</div>
 <?php include("../includes/footer.php")?>
 </div>
 </body>

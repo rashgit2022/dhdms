@@ -126,71 +126,55 @@ if(!isset($_SESSION['username'])){
 <!--fourth child-table-->
 <div class="container">
   <div class="row">
-    <form action="" method="post">
     <table class="table table-bordered text-center">
-      
         <!--php code to display dynamic data-->
-        <?php 
-        
-$get_ip_add = getIPAddress();
-$total_price=0;
-$cart_query="Select * from `cart_details` where  ip_address='$get_ip_add'";
-$result=mysqli_query($con,$cart_query);
-$result_count=mysqli_num_rows($result);
-if($result_count>0){
-  echo "<thead>
-  <tr>
-    <th>product_title</th>
-    <th>product_image</th>
-    <th>Quantity</th>
-    <th>Total price</th>
-    <th>Remove</th>
-    <th colspan='2'>Operations</th>
-  </tr>
-</thead>
-<tbody>";
+        <?php   
+          $get_ip_add = getIPAddress();
+          $total_price=0;
+          $cart_query="Select * from `cart_details` where  ip_address='$get_ip_add'";
+          $result=mysqli_query($con,$cart_query);
+          $result_count=mysqli_num_rows($result);
+          //add table header row
+          if($result_count>0){
+            echo "<thead>
+            <tr>
+              <th>product_title</th>
+              <th>product_image</th>
+              <th>Quantity</th>
+              <th>Sub Total</th>
+              <th colspan='2'>Operations</th>
+            </tr>
+          </thead>
+          <tbody>";
+          // add table data rows
+          while($row=mysqli_fetch_array($result)){
+            $product_id=$row['product_id'];
+            $quantity = $row['quantity'];
+            $select_products="Select * from `products` where  product_id='$product_id'";
+            $result_product=mysqli_fetch_array(mysqli_query($con,$select_products));
+            $product_price=$result_product['product_price'];
+            $product_title=$result_product['product_title'];
+            $product_image1=$result_product['product_image1'];
+            $product_suptotal= $quantity * $product_price;
+            $total_price+=$product_suptotal;     //500
+      ?>
 
-while($row=mysqli_fetch_array($result)){
-  $product_id=$row['product_id'];
-  $select_products="Select * from `products` where  product_id='$product_id'";
-  $result_products=mysqli_query($con,$select_products);
-  while($row_product_price=mysqli_fetch_array($result_products)){
-$product_price=array($row_product_price['product_price']); 
-$price_table=$row_product_price['product_price'];
-$product_title=$row_product_price['product_title'];
-$product_image1=$row_product_price['product_image1'];
-$product_values=array_sum($product_price);   //[500]
-$total_price+=$product_values;     //500
-?>
-
-
+          <form action="" method="post" name="<?php echo $product_id?>">
           <tr>
               <td><?php echo $product_title?></td>
               <td><img src="./admin_area/product_images/<?php echo $product_image1?>" alt="" class="cart_img"></td>
-              <td><input type="text" name="qty" id="" class="form-input w-50"></td>
-              
-              <?php 
-$get_ip_add = getIPAddress();
-if(isset($_POST['update_cart'])){
-              $quantities=$_POST['qty'];
-              $update_cart="update `cart_details` set quantity=$quantities where ip_address='$get_ip_add'";
-              $result_products_quantity=mysqli_query($con,$update_cart);
-              $total_price=(int)$total_price * (int)$quantities;
-            } 
-            ?>
-          <td><?php echo $price_table ?>/-</td>
-          <td><input type="checkbox" name="removeitem[]" value="<?php echo $product_id  ?>"></td>
-          <td>
-            <!--<button class="bg-info px-3 py-2 border-0 mx-3">Update</button>-->
-            <input type="submit" value="Update Cart" 
-            class="bg-info px-3 py-2 border-0 mx-3" name="update_cart">
-            <!-- <button class="bg-info px-3 py-2 border-0 mx-3">Remove</button> -->
-            <input type="submit" value="Remove Cart" 
-            class="bg-info px-3 py-2 border-0 mx-3" name="remove_cart">
-          </td>
+              <td>
+                <input type="text" name="qty" id="" class="form-input w-50" value="<?php echo $quantity?>">
+                <input type="hidden" name="productId" id="" class="form-input w-50" value="<?php echo $product_id?>" >
+              </td>
+              <td><?php echo $product_suptotal ?>/-</td>
+              <td>
+                <input type="submit" value="Update Cart" class="bg-info px-3 py-2 border-0 mx-3" name="update_cart">
+                <input type="submit" value="Remove Cart" class="bg-info px-3 py-2 border-0 mx-3" name="remove_cart">
+              </td>
         </tr>
-        
-        <?php    }}}
+          </form>
+        <?php    }}
         else{
           echo "<h2 class='text center text-danger'>Cart is empty</h2>";
         }
@@ -207,11 +191,14 @@ if(isset($_POST['update_cart'])){
       $result_count=mysqli_num_rows($result);
       if($result_count>0){
         echo " <h4 class='px-3'>Subtotal:<strong class='text-info'> $total_price /- </strong></h4>
+        <form action=\"\" method=\"post\">
         <input type='submit' value='Continue Shopping' class='bg-info px-3 py-2 border-0 mx-3' name='continue_shopping'>
-        <button class='bg-secondary px-3  py-2 border-0 '><a href='./users_area/checkout.php' class='text-light text-decoration-none' >Checkout</a></button>";
+        <button class='bg-secondary px-3  py-2 border-0 '><a href='./users_area/payment.php' class='text-light text-decoration-none' >Checkout</a></button>
+        </form>";
       }else{
-       echo "<input type='submit' value='Continue Shopping' 
-       class='bg-info px-3 py-2 border-0 mx-3' name='continue_shopping'>";
+       echo "<form action=\"\" method=\"post\">
+       <input type='submit' value='Continue Shopping' 
+       class='bg-info px-3 py-2 border-0 mx-3' name='continue_shopping'></form>";
       }
       if(isset($_POST['continue_shopping'])){
         echo "<script>window.open('index.php','_self')</script>";
@@ -221,27 +208,30 @@ if(isset($_POST['update_cart'])){
       
     </div>
   </div>
-</div>
-</form>
+    </div>
 <!-- function to remove item -->
-<?php 
-function remove_cart_item(){
-  global $con;
-  if(isset($_POST['remove_cart'])){
-    foreach($_POST['removeitem'] as $remove_id){
-      echo $remove_id;
-      $delete_query= "Delete from `cart_details` where product_id=$remove_id";
-      $run_delete=mysqli_query($con,$delete_query);
-      if($run_delete){
-        echo "<script>window.open('cart.php','_self')</script>";
-      }
+<?php
+  if(isset($_POST['remove_cart'])) {
+    $product_id=$_POST['productId'];
+    $delete_query= "Delete from `cart_details` where product_id=$product_id and ip_address='$get_ip_add'";
+    $run_delete=mysqli_query($con,$delete_query);
+    if($run_delete){
+      echo "<meta http-equiv='refresh' content='0'>";
     }
   }
+?> 
 
-}
-echo $remove_item=remove_cart_item();
+<?php
+    if(isset($_POST['update_cart'])) {
+      $quantities=$_POST['qty'];
+      $product_id=$_POST['productId'];
+      echo $_POST['qty']."and id".$product_id;
+      $update_cart="update `cart_details` set quantity=$quantities where ip_address='$get_ip_add' and product_id = '$product_id'";
+      $result_products_quantity=mysqli_query($con,$update_cart);
+      $total_price=(int)$total_price * (int)$quantity;
+      echo "<meta http-equiv='refresh' content='0'>";
+    } 
 ?>
-
 
 
 <!--last child-->

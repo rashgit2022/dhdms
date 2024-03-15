@@ -63,9 +63,11 @@ session_start();
         </li>
       </ul>      
         
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      <form class="d-flex" action="search_product.php" method="get">
+        <input class="form-control mr-sm-2" type="search" 
+        placeholder="Search" aria-label="Search" name="search_data">
+        
+        <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
       </form>
     </div>
   </div>

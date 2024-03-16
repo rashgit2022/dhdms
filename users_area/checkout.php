@@ -28,7 +28,7 @@ session_start();
 </head>
 <body>
     <!--Navbar-->
-    <div class="container-fluid p-0 ">
+    <div class="container-fluid">
         <!-- first child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-success">
   <div class="container-fluid"> 

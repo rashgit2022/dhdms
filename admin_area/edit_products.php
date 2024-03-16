@@ -63,7 +63,7 @@ if(isset($_GET['edit_products'])){
         </div>
         <div class="form-outline m-auto mb-4">
             <label for="product_price" class="form-label">Product Price</label>
-            <input type="text" id="product_price" name="product_price" class="form-control" required="required" value="<?php echo $product_price?>">
+            <input type="number" id="product_price" step=".25" min="0.00" max="9999.75"  name="product_price" class="form-control" required="required" value="<?php echo $product_price?>">
         </div>
         <br/>
         <div class="form-outline m-auto mb-4">

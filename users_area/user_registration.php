@@ -32,11 +32,20 @@ include('../functions/common_function.php');?>
                     placeholder="Enter your email" autocomplete="off" required="required" 
                     name="user_email"/>
                 </div>
+
+                <div class="form-group">
+                    <label>User Role:</label>
+                    <select class="form-control" style="width: 100%;">
+                        <option selected>Select Role</option>
+                        <option>Customer</option>
+                        <option>Farmer</option>
+                    </select>
+                </div>
                 <!-- image field -->
                 <div class="form-outline mb-4">
                     <label for="user_image" class="form-label">User Image</label>
                     <input type="file" id="user_image" class="form-control" 
-                     required="required" name="user_image"/>
+                      name="user_image"/>
                 </div>
                 <!-- password field -->
                 <div class="form-outline mb-4">

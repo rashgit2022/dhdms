@@ -47,8 +47,7 @@ include('../functions/common_function.php');?>
                     </div>
                     <div class="form-outline mb-4">
                         <label for="admin_image" class="form-label"> Image</label>
-                        <input type="file" id="admin_image" name="admin_image" 
-                        required="required" class="form-control"/>
+                        <input type="file" id="admin_image" name="admin_image" class="form-control"/>
                     </div>
                     <div>
                         <input type="submit" class="bg-info py-2 px-3 border-0"

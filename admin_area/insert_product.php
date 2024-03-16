@@ -115,7 +115,7 @@ if(isset($_POST['insert_product'])){
                 <!--Price-->
                 <div class="form-outline mb-4 w-50 m-auto">
                 <label for ="product_price" class="form-label"> product price </label>
-                <input type="text" name="product_price" id="product_price" class="form-control" placeholder="Enter product price" autocomplete="off" required="required">
+                <input type="number" name="product_price" step=".25" min="0.00" max="9999.75" id="product_price" class="form-control" placeholder="Enter product price" autocomplete="off" required="required">
             </div>
             <br/>
 

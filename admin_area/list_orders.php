@@ -17,7 +17,7 @@ if($row_count==0){
         <th>Total Products</th>
         <th>Order Date</th>
         <th>Status</th>
-        <th>Delete</th>
+        
     </tr>
 </thead>
 <tbody class='bg-secondary text-light' >";
@@ -39,7 +39,7 @@ if($row_count==0){
         <td><?php echo$total_products;?></td>
         <td><?php echo $order_date;?></td>
         <td><?php echo $order_status;?></td>
-        <td><a href='index.php?delete_orders=<?php echo $order_id ?>' class='text-light'><i class='fa-solid fa-trash'></i></a></td>
+        
         </tr>
         <?php
     }

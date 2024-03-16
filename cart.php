@@ -140,8 +140,8 @@ if(!isset($_SESSION['username'])){
             <tr>
               <th>product_title</th>
               <th>product_image</th>
-              <th>Quantity</th>
-              <th>Sub Total</th>
+              <th>Quantity (KG)</th>
+              <th>Total (RS)</th>
               <th colspan='2'>Operations</th>
             </tr>
           </thead>
@@ -190,7 +190,7 @@ if(!isset($_SESSION['username'])){
       $result=mysqli_query($con,$cart_query);
       $result_count=mysqli_num_rows($result);
       if($result_count>0){
-        echo " <h4 class='px-3'>Subtotal:<strong class='text-info'> $total_price /- </strong></h4>
+        echo " <h4 class='px-3'>Subtotal (RS):<strong class='text-info'> $total_price /- </strong></h4>
         <form action=\"\" method=\"post\">
         <input type='submit' value='Continue Shopping' class='bg-info px-3 py-2 border-0 mx-3' name='continue_shopping'>
         <button class='bg-secondary px-3  py-2 border-0 '><a href='./users_area/payment.php' class='text-light text-decoration-none' >Checkout</a></button>
